@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+
+import React, { useEffect } from 'react';
+import Button from '@material-ui/core/Button';
+
+const SEND_MAIN_PING = 'SEND_MAIN_PING';
 
 function App() {
+  const { ipcRenderer } = window.require("electron"); 
+  const sendMail = () => { 
+    ipcRenderer.send(SEND_MAIN_PING, 'send'); 
+    console.log('hi');
+  } 
+
+  useEffect(() => {
+    sendMail();
+  }, [])
+  // console.log(BrowserWindow, dialog, Menu);
+  // console.log(ipcRenderer)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Button variant="contained" color="primary"> 
+      Hello World
+    </Button>
   );
 }
 
-export default App;
+export default App; 

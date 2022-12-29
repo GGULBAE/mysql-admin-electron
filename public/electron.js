@@ -11,10 +11,11 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
+      contextIsolation : false, 
       devTools: isDev,
     },
   });
-
+  
   mainWindow.loadURL(
     isDev
       ? "http://localhost:3000"
